@@ -8,7 +8,6 @@
 
 ## Este repositório contém uma aplicação de Ruby on Rails com frontend em React monolito no Docker.
 
-<br>
 
 ## Pré-requisitos:
 **Antes de começar, verifique se o seu ambiente atende aos seguintes requisitos:**
@@ -25,9 +24,8 @@
 
 [Docker](https://www.docker.com/) (você pode fazer o download aqui) 20.10.8
 
-<br>
 
-## Instalação
+## Instalação e setup:
 **Para instalar a aplicação, siga os seguintes passos:**
 
 * Clone este repositório: `git clone https://github.com/raposojoaopaulo/Docker-Rails-React`
@@ -36,10 +34,18 @@
 
 * Execute o seguinte comando para construir as imagens do Docker: `docker-compose build web`
 
-* Execute o seguinte comando para iniciar a aplicação: `docker-compose up web`
-
 * Para acessar o terminal da aplicaçao via docker compose:
 `docker-compose run --rm web bash`
+
+* Dentro do bash instale as dependencias com: `bundle install` `npm install` e `yarn install`
+
+* Para executar comandos do rails dentro do bash utileze: `bundle exec`
+
+```
+bundle exec rails console
+```
+
+* Execute o seguinte comando para iniciar a aplicação: `docker-compose up web`
 
 * Acesse a aplicação em seu navegador: http://localhost:3000
 
