@@ -1,0 +1,32 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:12-alpine
+    env_file:
+      - env
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+  web:
+    build: .
+    tty: true
+    env_file:
+      - env
+    volumes:
+      - .:/app
+      - ruby_gems:/bundle #named volume
+      - ./node_modules:/app/node_modules
+    ports:
+      - 3000:3000
+    entrypoint: ./entrypoint.sh
+    depends_on:
+      - postgres
+    # command: bundle exec rails s -b 0.0.0.0 -p 3000
+    # command: bundle exec bin/rails server -p 3000
+    # command: bundle exec ./bin/dev
+    command: foreman start -f Procfile.dev
+
+volumes:
+  postgres-data:
+  ruby_gems:
